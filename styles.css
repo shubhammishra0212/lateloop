@@ -22,7 +22,11 @@ html[lang=hi] em{font-family:var(--sans);font-style:normal;font-weight:800}
 /* ---------- HERO ---------- */
 .hero{position:relative;margin:12px;border-radius:32px;overflow:hidden;color:#fff;isolation:isolate}
 .hero{background:#2140f0}
-.hero-scene{position:absolute;inset:0;z-index:-2}
+.hero-scene{position:absolute;inset:0;z-index:-3}
+.hero-3d{position:absolute;inset:0;z-index:-2}
+.hero-3d canvas{width:100%;height:100%;display:block}
+.hero.has-3d .hero-scene svg > :not(rect:first-child):not(circle){display:none}
+.hero.has-3d{background:#2140f0}
 .hero-scene svg{width:100%;height:100%;display:block}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:linear-gradient(90deg,rgba(10,16,60,.55) 0%,rgba(10,16,60,.15) 55%,transparent 75%),linear-gradient(180deg,transparent 60%,rgba(10,16,60,.45) 100%)}
@@ -226,7 +230,7 @@ dialog::backdrop{background:rgba(13,20,36,.55)}
   .hero-inner{padding:150px 16px 16px;gap:28px}
   .wordmark{top:70px}
   .hero{background:#0e1859}
-  .hero-scene{bottom:auto;height:640px}
+  .hero-scene,.hero-3d{bottom:auto;height:640px}
   .lead{font-size:17px}
   main{padding:0 16px}
   .facts,.steps{grid-template-columns:1fr}
