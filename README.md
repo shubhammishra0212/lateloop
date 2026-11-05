@@ -2,7 +2,7 @@
 
 **Train late? See the city. Be back on time.**
 
-Live: **https://shubhammishra0212.github.io/lateloop/**
+Live: **https://lateloop.vercel.app** · mirror: https://shubhammishra0212.github.io/lateloop/
 
 LateLoop turns a train delay into a short, safe local trip. You tell it how late your train is. It plans a loop of nearby sights, food and markets around the station, and works out the return time so you are always back before the train.
 
@@ -48,7 +48,8 @@ The planner searches every ordering of up to 5 stops. A stop is allowed only if 
 - **Places:** OpenStreetMap / Nominatim coordinates, saved in `data/stations.js`.
 - **Voice:** Web Speech API for speech-to-text and text-to-speech (`en-IN`, `hi-IN`).
 - **AI:** a grounded intent and Q&A agent that runs on the device, plus an optional online LLM (Pollinations).
-- **Hosting:** GitHub Pages.
+- **Hosting:** Vercel (production) and GitHub Pages (mirror).
+- **Photos:** Wikimedia Commons (Ambala Cantt Jn, Kurukshetra Jn, Brahma Sarovar, Sheikh Chilli's Tomb).
 
 ## Run locally
 
