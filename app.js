@@ -28,7 +28,7 @@
       whyTpl: (d, e, b) => `Your train is ${d} late. Trains often make up time, so we assume it could arrive by ${e}. You will be back at ${b} — 30 minutes before that.`,
       safe: "Safe plan. You will be back with 30 minutes to spare.",
       tight: "Not enough time to leave the station safely.", tightSub: "Stay at the station. Delays of 1 h 30 min or more usually allow a short trip.",
-      headBack: "HEAD BACK NOW", headBackSub: (m) => `Your train may arrive sooner. Walk back to the station — about ${m} min.`,
+      headBack: "HEAD BACK NOW", headBackSub: (m) => `Your train may arrive sooner. Go back to the station now — about ${m} min.`,
       replanned: "Trip updated for the new delay.", nothingFits: "Nothing else fits — enjoy this stop, then go back.",
       copied: "Plan copied — paste it in WhatsApp.", thinking: "Thinking…", aiLabel: "AI assistant", offLabel: "Offline assistant",
       needPlan: "First tell me how late your train is, or press “Plan my trip”.",
@@ -70,7 +70,7 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const S = {
-    lang: "en", station: "ambala-cantt", delay: 180, nowMin: 0, mode: "walk",
+    lang: "en", station: "ambala-cantt", delay: 240, nowMin: 0, mode: "walk",
     likes: new Set(["heritage", "food", "market", "faith", "nature"]),
     plan: null, trip: null, map: null, layers: null, timer: null, speaking: null
   };
@@ -415,6 +415,36 @@
     } catch (_) { clearTimeout(to); return null; }
   }
 
+  // 3) grounded offline answers: finds the place and topic in the question and answers from the data
+  function localQA(q) {
+    const s = q.toLowerCase(), hi = S.lang === "hi", sd = st();
+    const place = sd.places.find((p) => {
+      const words = (p.name.en + " " + p.name.hi + " " + p.id.replace(/-/g, " ")).toLowerCase().split(/[\s&.'’]+/).filter((w) => w.length > 3 && !["church", "mandir", "road", "board", "ruins", "prachin"].includes(w));
+      return words.some((w) => s.includes(w));
+    }) || (/(church|चर्च)/.test(s) && sd.places.find((p) => p.id === "st-pauls")) || (/(temple|mandir|मंदिर|aarti)/.test(s) && sd.places.find((p) => p.type === "faith")) || (/(lake|झील|park)/.test(s) && sd.places.find((p) => p.type === "nature")) || (/(memorial|स्मारक|war)/.test(s) && sd.places.find((p) => p.id === "kharga-memorial"));
+    const idx = place ? sd.places.indexOf(place) + 1 : 0;
+    const name = place ? place.name[S.lang] : "";
+    const back = S.plan ? (hi ? ` ${clock(S.plan.backBy)} तक स्टेशन लौटना याद रखें।` : ` Remember to be back at the station by ${clock(S.plan.backBy)}.`) : "";
+    if (/(veg|vegetarian|शाकाहारी|jain|egg)/.test(s))
+      return (hi ? `${name || "इन जगहों"} के शाकाहारी खाने की पक्की जानकारी हमारे पास नहीं है। हरियाणा-पंजाब के ज़्यादातर ढाबों में दाल, पनीर और सब्ज़ी मिलती है — ऑर्डर से पहले स्टाफ़ से पूछ लें। सदर बाज़ार में शाकाहारी मिठाई और स्नैक्स आसानी से मिलते हैं।` : `I don't have confirmed veg details${name ? " for " + name : ""}. Most dhabas in Haryana and Punjab serve dal, paneer and sabzi — ask the staff before ordering. Sadar Bazaar has plenty of vegetarian sweets and snacks.`) + back;
+    if (/(luggage|bag|saman|सामान|suitcase|cloak)/.test(s))
+      return hi ? "भारी सामान के साथ घूमना मुश्किल है। बड़े स्टेशनों पर क्लोक रूम होता है — इन्क्वायरी काउंटर पर पूछें। छोटा बैग हो तो “ऑटो” चुनें।" : "Carrying heavy bags is tiring. Big junctions usually have a cloak room — ask at the enquiry counter. With a small bag, choose “Auto” to move faster.";
+    if (/(toilet|washroom|bathroom|शौचालय)/.test(s))
+      return hi ? "ढाबों और बाज़ार के बड़े रेस्टोरेंट में आमतौर पर शौचालय होता है। स्टेशन पर भी सुविधा है।" : "Dhabas and larger restaurants in the bazaar usually have washrooms. The station has them too.";
+    if (/(woman|women|girl|alone|akeli|अकेली|safe|safety|सुरक्षित)/.test(s))
+      return localAnswer("safe") + (hi ? " भीड़ वाली, रोशन जगहों पर रहें और प्लान “प्लान भेजें” से परिवार को भेज दें। आपात स्थिति में 112 पर कॉल करें।" : " Stay on busy, well-lit roads and send your plan to family with “Share plan”. In an emergency call 112.");
+    if (place && /(open|close|hours|timing|time|khula|खुल|बंद|kab)/.test(s)) {
+      const nowM = currentMinute() % 1440, open = nowM >= place.open * 60 && nowM < place.close * 60;
+      return (hi ? `${name} लगभग ${place.open}:00 से ${place.close}:00 तक खुला रहता है (अनुमानित)। अभी यह ${open ? "खुला" : "बंद"} होना चाहिए।` : `${name} is open roughly ${place.open}:00 to ${place.close}:00 (approximate). It should be ${open ? "open" : "closed"} right now.`) + back;
+    }
+    if (place && /(far|distance|door|दूर|kitna|how long|reach|पहुँच)/.test(s))
+      return (hi ? `स्टेशन से ${name} तक लगभग ${st().walk[0][idx]} मिनट पैदल या ${Math.round(st().drive[0][idx] * 1.8) + 4} मिनट ऑटो से।` : `${name} is about ${st().walk[0][idx]} min on foot or ${Math.round(st().drive[0][idx] * 1.8) + 4} min by auto from the station.`) + back;
+    if (place) return `${name} — ${place.short[S.lang]}. ${place.story[S.lang]}`;
+    if (/(eat|food|khana|खाना|hungry|भूख|dhaba)/.test(s)) return localAnswer("eat");
+    if (/(miss|late|safe|सुरक्षित)/.test(s)) return localAnswer("safe");
+    return localAnswer("summary");
+  }
+
   function toastAgent(text, ai) {
     const out = $("#agentOut"); out.hidden = false;
     out.innerHTML = "";
@@ -436,7 +466,7 @@
     const q = (query || "").trim(); if (!q) return;
     const intent = parseIntent(q);
     let prefix = "";
-    if (intent.delay || intent.mode || intent.likes) {
+    if (intent.delay || intent.mode) {
       if (intent.delay) { S.delay = Math.min(600, Math.max(30, intent.delay)); syncDelay(); }
       if (intent.mode) setMode(intent.mode);
       if (intent.likes) { S.likes = new Set(intent.likes); syncLikes(); }
@@ -447,10 +477,12 @@
         toastAgent(prefix + localAnswer("summary"), false); return;
       }
     }
-    out.innerHTML = `<p class="thinking">${t("thinking")}</p>`;
+    // grounded answer first (instant); AI rewrite replaces it if the online model responds
+    toastAgent(prefix + localQA(q), false);
+    $("#agentOut").insertAdjacentHTML("beforeend", `<p class="thinking" id="aiWait">✦ ${t("thinking")}</p>`);
     const ans = await askLLM(q);
+    $("#aiWait")?.remove();
     if (ans) toastAgent(prefix + ans, true);
-    else toastAgent(prefix + localAnswer(/eat|food|khana|खाना|hungry|भूख/i.test(q) ? "eat" : /safe|surakshit|सुरक्षित|miss/i.test(q) ? "safe" : "summary"), false);
   }
 
   // ---------- UI sync ----------
