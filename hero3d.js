@@ -25,7 +25,7 @@ function init() {
   scene.fog = new THREE.Fog(0x8ea4ff, 22, 52);
 
   const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 200);
-  const camBase = new THREE.Vector3(0, 13, 27);
+  const camBase = new THREE.Vector3(0, 17, 41);
 
   // lights
   scene.add(new THREE.HemisphereLight(0xdfe6ff, 0x1a2488, 1.15));
@@ -157,8 +157,8 @@ function init() {
     camera.aspect = w / h;
     // keep the diorama in the upper/right area on wide screens, centred on phones
     const wide = w > 1040;
-    world.position.set(wide ? 1.5 : 0, wide ? 2.6 : 3.2, 0);
-    world.scale.setScalar(wide ? 1 : 0.82);
+    world.position.set(wide ? 4.5 : 0, wide ? 1.2 : 4.5, 0);
+    world.scale.setScalar(wide ? 0.95 : 0.8);
     camera.updateProjectionMatrix();
   }
   new ResizeObserver(resize).observe(host);
@@ -188,7 +188,7 @@ function init() {
     camera.position.x += (camBase.x + pointer.x * 2.2 - camera.position.x) * 0.05;
     camera.position.y += (camBase.y - pointer.y * 1.2 - camera.position.y) * 0.05;
     camera.position.z = camBase.z;
-    camera.lookAt(0, 1.5, 0);
+    camera.lookAt(0, 0.5, 0);
     renderer.render(scene, camera);
   }
   frame();
