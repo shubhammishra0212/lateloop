@@ -49,7 +49,7 @@ The planner searches every ordering of up to 5 stops. A stop is allowed only if 
 - **Voice:** Web Speech API for speech-to-text and text-to-speech (`en-IN`, `hi-IN`).
 - **AI:** a grounded intent and Q&A agent that runs on the device, plus an optional online LLM (Pollinations).
 - **Hosting:** Vercel (production) and GitHub Pages (mirror).
-- **Photos:** Wikimedia Commons (Ambala Cantt Jn, Kurukshetra Jn, Brahma Sarovar, Sheikh Chilli's Tomb).
+- **Photos:** Wikimedia Commons (Brahma Sarovar, Sheikh Chilli's Tomb).
 
 ## Run locally
 

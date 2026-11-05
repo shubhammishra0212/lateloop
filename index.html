@@ -11,14 +11,87 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
   <a class="skip" href="#plan">Skip to planner</a>
 
   <!-- ============ HERO ============ -->
   <header class="hero" id="hero">
-    <div class="hero-bg" id="heroBg" style="background-image:url('img/ambala-rs.jpg')"></div>
+    <div class="hero-scene" aria-hidden="true">
+      <svg viewBox="0 0 1440 760" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2140f0"/><stop offset=".55" stop-color="#4a6bff"/><stop offset="1" stop-color="#9fb4ff"/>
+          </linearGradient>
+          <filter id="blur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="28"/></filter>
+          <radialGradient id="sun"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="1440" height="760" fill="url(#sky)"/>
+        <circle cx="1080" cy="300" r="190" fill="url(#sun)"/>
+        <circle cx="1080" cy="300" r="46" fill="#fff" opacity=".35"/>
+
+        <!-- far hills -->
+        <path d="M0 520 C180 470 320 500 470 480 S760 430 900 470 1200 450 1440 480 V760 H0Z" fill="#3655f5" opacity=".55"/>
+
+        <!-- fog back -->
+        <g class="fog f1" filter="url(#blur)"><ellipse cx="300" cy="500" rx="420" ry="46" fill="#fff" opacity=".35"/><ellipse cx="1150" cy="470" rx="380" ry="40" fill="#fff" opacity=".3"/></g>
+
+        <!-- landmark skyline -->
+        <g fill="#16248f">
+          <!-- church ruin bell tower -->
+          <path d="M150 600 V420 L175 372 L200 420 V600Z"/><rect x="110" y="480" width="40" height="120"/><rect x="200" y="500" width="34" height="100"/>
+          <path d="M163 450 a12 14 0 0 1 24 0 v22 h-24z" fill="#4a6bff"/>
+          <!-- Mughal dome tomb -->
+          <rect x="360" y="520" width="150" height="80"/><path d="M380 520 C380 460 490 460 490 520Z"/><rect x="432" y="440" width="6" height="26"/>
+          <rect x="350" y="490" width="14" height="110"/><rect x="506" y="490" width="14" height="110"/>
+          <circle cx="357" cy="486" r="9"/><circle cx="513" cy="486" r="9"/>
+          <path d="M418 600 v-38 a17 17 0 0 1 34 0 v38z" fill="#4a6bff"/>
+          <!-- temple shikhara -->
+          <path d="M650 600 V520 C660 470 680 430 700 395 C720 430 740 470 750 520 V600Z"/><rect x="697" y="372" width="6" height="26"/><path d="M703 372 l18 7 -18 7z"/>
+          <rect x="610" y="545" width="40" height="55"/><path d="M606 545 C615 520 645 520 654 545Z"/>
+          <!-- gurudwara -->
+          <rect x="860" y="510" width="170" height="90"/><path d="M905 510 C905 455 985 455 985 510Z"/><rect x="942" y="430" width="6" height="22"/>
+          <path d="M860 510 c0-22 30-22 30 0z"/><path d="M1000 510 c0-22 30-22 30 0z"/>
+          <path d="M930 600 v-36 a15 15 0 0 1 30 0 v36z" fill="#4a6bff"/>
+          <!-- railway station with clock -->
+          <rect x="1150" y="500" width="230" height="100"/><path d="M1140 500 L1265 445 L1390 500Z"/><circle cx="1265" cy="478" r="13" fill="#4a6bff"/>
+          <path d="M1265 470 v8 h6" stroke="#16248f" stroke-width="2.5" fill="none"/>
+          <rect x="1180" y="530" width="26" height="40" rx="13" fill="#4a6bff"/><rect x="1220" y="530" width="26" height="40" rx="13" fill="#4a6bff"/><rect x="1284" y="530" width="26" height="40" rx="13" fill="#4a6bff"/><rect x="1324" y="530" width="26" height="40" rx="13" fill="#4a6bff"/>
+        </g>
+
+        <!-- ground + track -->
+        <rect y="600" width="1440" height="160" fill="#0e1859"/>
+        <line x1="0" y1="640" x2="1440" y2="640" stroke="#fff" stroke-opacity=".28" stroke-width="3"/>
+        <line x1="0" y1="652" x2="1440" y2="652" stroke="#fff" stroke-opacity=".12" stroke-width="10" stroke-dasharray="4 18"/>
+
+        <!-- train -->
+        <g class="train">
+          <rect x="0" y="606" width="150" height="34" rx="10" fill="#ffd56a"/><path d="M150 606 h18 a22 22 0 0 1 22 22 v12 h-40z" fill="#ffd56a"/>
+          <rect x="160" y="0" width="0" height="0"/>
+          <g fill="#0e1859" opacity=".75"><rect x="14" y="614" width="22" height="12" rx="3"/><rect x="46" y="614" width="22" height="12" rx="3"/><rect x="78" y="614" width="22" height="12" rx="3"/><rect x="110" y="614" width="22" height="12" rx="3"/><rect x="156" y="614" width="18" height="12" rx="3"/></g>
+          <rect x="-160" y="606" width="150" height="34" rx="10" fill="#fff" opacity=".92"/>
+          <g fill="#0e1859" opacity=".6"><rect x="-146" y="614" width="22" height="12" rx="3"/><rect x="-114" y="614" width="22" height="12" rx="3"/><rect x="-82" y="614" width="22" height="12" rx="3"/><rect x="-50" y="614" width="22" height="12" rx="3"/></g>
+          <rect x="-320" y="606" width="150" height="34" rx="10" fill="#fff" opacity=".92"/>
+          <g fill="#0e1859" opacity=".6"><rect x="-306" y="614" width="22" height="12" rx="3"/><rect x="-274" y="614" width="22" height="12" rx="3"/><rect x="-242" y="614" width="22" height="12" rx="3"/><rect x="-210" y="614" width="22" height="12" rx="3"/></g>
+        </g>
+
+        <!-- tourist loop: station -> gurudwara -> temple -> tomb -> church -> station -->
+        <path id="loop" class="loop" d="M1265 600 C1180 380 1020 360 945 400 S760 330 700 350 S520 400 435 420 S240 330 175 345 S90 520 260 590 S1100 700 1265 600" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="2 12"/>
+        <g class="pins">
+          <g class="pin-a"><circle cx="945" cy="400" r="11" fill="#fff"/><circle cx="945" cy="400" r="5" fill="#2747ff"/></g>
+          <g class="pin-a d2"><circle cx="700" cy="350" r="11" fill="#fff"/><circle cx="700" cy="350" r="5" fill="#2747ff"/></g>
+          <g class="pin-a d3"><circle cx="435" cy="420" r="11" fill="#fff"/><circle cx="435" cy="420" r="5" fill="#2747ff"/></g>
+          <g class="pin-a d4"><circle cx="175" cy="345" r="11" fill="#fff"/><circle cx="175" cy="345" r="5" fill="#2747ff"/></g>
+        </g>
+        <circle r="9" fill="#ffd56a" stroke="#fff" stroke-width="3" class="traveller">
+          <animateMotion dur="14s" repeatCount="indefinite" rotate="auto"><mpath href="#loop"/></animateMotion>
+        </circle>
+
+        <!-- fog front -->
+        <g class="fog f2" filter="url(#blur)"><ellipse cx="700" cy="590" rx="520" ry="44" fill="#fff" opacity=".32"/><ellipse cx="80" cy="610" rx="300" ry="36" fill="#fff" opacity=".28"/></g>
+      </svg>
+    </div>
     <nav class="nav">
       <a class="brand" href="#hero" aria-label="LateLoop home">
         <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#fff"/><path d="M9 20a7 7 0 1 1 14 0" stroke="#2747ff" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="16" cy="20" r="2.6" fill="#2747ff"/></svg>
@@ -230,7 +303,7 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="data/stations.js?v=6"></script>
-  <script src="app.js?v=6"></script>
+  <script src="data/stations.js?v=7"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>

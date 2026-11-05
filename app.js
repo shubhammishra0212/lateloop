@@ -272,7 +272,6 @@
   function renderExplore() {
     const s = st();
     $("#exploreTitle").innerHTML = t("exploreTpl")(s.name[S.lang].replace(/ Junction| जंक्शन/, ""));
-    $("#heroBg").style.backgroundImage = `url('${s.img}')`;
     const box = $("#cards"); box.innerHTML = "";
     s.places.forEach((p, i) => {
       const c = document.createElement("article");

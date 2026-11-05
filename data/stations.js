@@ -5,7 +5,7 @@
 window.LL_STATIONS = {
   "ambala-cantt": {
     name: { en: "Ambala Cantt Junction", hi: "अम्बाला कैंट जंक्शन" },
-    code: "UMB", img: "img/ambala-rs.jpg",
+    code: "UMB",
     lat: 30.33824, lon: 76.8287,
     // minutes, rows/cols follow [station, ...places]
     walk: [
@@ -104,7 +104,7 @@ window.LL_STATIONS = {
 
   "kurukshetra": {
     name: { en: "Kurukshetra Junction", hi: "कुरुक्षेत्र जंक्शन" },
-    code: "KKDE", img: "img/kkr-station.jpg",
+    code: "KKDE",
     lat: 29.96986, lon: 76.85171,
     walk: [
       [0, 46, 29, 29, 34, 25, 12, 38], [46, 0, 17, 16, 26, 23, 31, 5], [29, 17, 0, 4, 23, 13, 16, 14],
