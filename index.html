@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="styles.css?v=21">
+  <link rel="stylesheet" href="styles.css?v=22">
 </head>
 <body>
   <a class="skip" href="#plan">Skip to planner</a>
@@ -32,15 +32,15 @@
         <circle cx="1080" cy="330" r="58" fill="#ffe3b8" opacity=".9"/>
 
         <!-- far hills -->
-        <path d="M0 470 C160 420 300 455 470 430 S760 380 920 420 1230 395 1440 430 V760 H0Z" fill="#7d8fff" opacity=".55"/>
-        <path d="M0 520 C180 480 320 505 470 488 S760 448 900 478 1200 460 1440 490 V760 H0Z" fill="#4b63f2" opacity=".85"/>
+        <path class="rise r1" d="M0 470 C160 420 300 455 470 430 S760 380 920 420 1230 395 1440 430 V760 H0Z" fill="#7d8fff" opacity=".55"/>
+        <path class="rise r2" d="M0 520 C180 480 320 505 470 488 S760 448 900 478 1200 460 1440 490 V760 H0Z" fill="#4b63f2" opacity=".85"/>
         <g class="birds" fill="none" stroke="#1b2aa8" stroke-width="2.4" stroke-linecap="round" opacity=".55"><path d="M820 230 q8 -8 16 0 q8 -8 16 0"/><path d="M870 205 q6 -6 12 0 q6 -6 12 0"/><path d="M780 260 q5 -5 10 0 q5 -5 10 0"/></g>
 
         <!-- fog back -->
         <g class="fog f1" filter="url(#blur)"><ellipse cx="300" cy="500" rx="420" ry="46" fill="#fff" opacity=".35"/><ellipse cx="1150" cy="470" rx="380" ry="40" fill="#fff" opacity=".3"/></g>
 
         <!-- landmark skyline -->
-        <g fill="#16248f">
+        <g class="rise r3" fill="#16248f">
           <!-- church ruin bell tower -->
           <path d="M150 600 V420 L175 372 L200 420 V600Z"/><rect x="110" y="480" width="40" height="120"/><rect x="200" y="500" width="34" height="100"/>
           <path d="M163 450 a12 14 0 0 1 24 0 v22 h-24z" fill="#4a6bff"/>
@@ -294,6 +294,31 @@
     </form>
   </dialog>
 
+  <dialog id="placeSheet" class="sheet" aria-labelledby="psName">
+    <div class="ps-media" id="psMedia"></div>
+    <button type="button" id="psClose" class="ps-close" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="ps-body">
+      <span class="ps-tag" id="psTag"></span>
+      <h2 id="psName"></h2>
+      <p class="ps-short" id="psShort"></p>
+      <div class="ps-meta">
+        <div><span data-i18n="walkTime">On foot</span><b id="psWalk"></b></div>
+        <div><span data-i18n="autoTime">By auto</span><b id="psAuto"></b></div>
+        <div><span data-i18n="hoursLbl">Open (approx.)</span><b id="psHours"></b></div>
+      </div>
+      <p class="ps-story" id="psStory"></p>
+      <div class="ps-actions">
+        <a id="psDir" class="primary sm" href="#" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8z"/></svg>
+          <span data-i18n="directions">Get directions</span>
+        </a>
+        <button type="button" id="psListen" class="ghost">🔊 Listen</button>
+      </div>
+    </div>
+  </dialog>
+
   <footer class="foot">
     <div class="foot-inner">
       <div class="brand">
@@ -305,7 +330,7 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="data/stations.js?v=21"></script>
-  <script src="app.js?v=21"></script>
+  <script src="data/stations.js?v=22"></script>
+  <script src="app.js?v=22"></script>
 </body>
 </html>

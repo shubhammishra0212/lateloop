@@ -15,6 +15,7 @@
       s1t: "Tell us the delay", s1d: "Pick your station and how late the train is — or just say it to the assistant.",
       s2t: "Get a safe loop", s2d: "We assume the train may make up 30% of its delay and keep 30 minutes spare.",
       s3t: "Explore, stay updated", s3d: "Listen to local stories. If the delay changes, the trip updates — or tells you to head back.",
+      details: "Open details", directions: "Get directions", walkTime: "On foot", autoTime: "By auto", hoursLbl: "Open (approx.)", close: "Close",
       fromStation: "from the station", typeName: { food: "Food", heritage: "History", market: "Market", faith: "Faith", nature: "Park" },
       heroSub: "Tell us how late your train is. We plan a short local trip around the station — and make sure you are back before your train.",
       where: "Which station are you at?", howLate: "How late is your train?",
@@ -55,6 +56,7 @@
       s1t: "देरी बताइए", s1d: "स्टेशन और ट्रेन की देरी चुनिए — या सहायक को बोलकर बताइए।",
       s2t: "सुरक्षित प्लान पाइए", s2d: "हम मानते हैं कि ट्रेन 30% देरी पूरी कर सकती है और 30 मिनट बचाकर रखते हैं।",
       s3t: "घूमिए, अपडेट रहिए", s3d: "स्थानीय कहानियाँ सुनिए। देरी बदले तो यात्रा बदल जाती है — या वापस लौटने को कहती है।",
+      details: "जानकारी देखें", directions: "रास्ता देखें", walkTime: "पैदल", autoTime: "ऑटो से", hoursLbl: "खुला (अनुमानित)", close: "बंद करें",
       fromStation: "स्टेशन से", typeName: { food: "खाना", heritage: "इतिहास", market: "बाज़ार", faith: "आस्था", nature: "पार्क" },
       heroSub: "बताइए आपकी ट्रेन कितनी लेट है। हम स्टेशन के आसपास एक छोटी यात्रा बनाते हैं — और पक्का करते हैं कि आप ट्रेन से पहले लौट आएँ।",
       where: "आप किस स्टेशन पर हैं?", howLate: "ट्रेन कितनी लेट है?",
@@ -240,7 +242,7 @@
       }
       li.innerHTML = `
         <span class="n" aria-hidden="true">${k + 1}</span>
-        <div class="stop-card">
+        <div class="stop-card" data-open="${x.idx}" title="${t("details")}">
           ${thumbHTML(x.place)}
           <div>
             <h3>${x.place.name[S.lang]}</h3>
@@ -264,10 +266,23 @@
     drawMap(p);
   }
 
-  const GLYPH = { food: "🍛", heritage: "🏛️", market: "🛍️", faith: "🛕", nature: "🌳" };
+  // clean line icons (no emoji) for places without a photo
+  const ICON_PATHS = {
+    food: '<path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M9 8c0-1.6 1.6-1.6 1.6-3.2M13.4 8c0-1.6 1.6-1.6 1.6-3.2"/>',
+    heritage: '<path d="M3 9.5h18L12 4z"/><path d="M5.5 9.5v8M10 9.5v8M14 9.5v8M18.5 9.5v8M3 20h18"/>',
+    market: '<path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8a3 3 0 0 1 6 0"/>',
+    faith: '<path d="M12 2.5l3.2 6.5H8.8z"/><path d="M7 21v-9h10v9M4.5 21h15M10.2 21v-4a1.8 1.8 0 0 1 3.6 0v4"/>',
+    nature: '<path d="M12 3a5.5 5.5 0 0 1 4.2 9 4 4 0 0 1-4.2 6 4 4 0 0 1-4.2-6A5.5 5.5 0 0 1 12 3z"/><path d="M12 18v3.5"/>'
+  };
+  const icon = (type, size = 30) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[type] || ICON_PATHS.heritage}</svg>`;
   const thumbHTML = (p) => p.img
     ? `<div class="thumb" style="background-image:url('${p.img}')" aria-hidden="true"></div>`
-    : `<div class="thumb g-${p.type}" aria-hidden="true">${GLYPH[p.type] || "📍"}</div>`;
+    : `<div class="thumb g-${p.type}" aria-hidden="true">${icon(p.type, 30)}</div>`;
+  const autoMin = (i) => Math.round(st().drive[0][i] * 1.8) + 4;
+  const directionsURL = (p, mode = "walking") => {
+    const s = st();
+    return `https://www.google.com/maps/dir/?api=1&origin=${s.lat},${s.lon}&destination=${p.lat},${p.lon}&travelmode=${mode}`;
+  };
 
   function renderExplore() {
     const s = st();
@@ -275,16 +290,41 @@
     const box = $("#cards"); box.innerHTML = "";
     s.places.forEach((p, i) => {
       const c = document.createElement("article");
-      c.className = "pcard" + (p.img ? "" : " g-" + p.type);
+      c.className = "pcard" + (p.img ? " has-img" : " g-" + p.type);
+      c.tabIndex = 0;
+      c.setAttribute("role", "button");
+      c.dataset.open = i + 1;
+      c.setAttribute("aria-label", `${p.name[S.lang]} — ${t("details")}`);
+      c.style.setProperty("--d", `${i * 70}ms`);
       if (p.img) c.style.backgroundImage = `url('${p.img}')`;
       c.innerHTML = `
         <span class="tag">${t("typeName")[p.type]}</span>
-        ${p.img ? "" : `<span class="glyph" aria-hidden="true">${GLYPH[p.type]}</span>`}
-        <button type="button" class="go" data-card-listen="${i + 1}" aria-label="${t("listen")}: ${p.name[S.lang]}">🔊</button>
+        ${p.img ? "" : `<span class="glyph">${icon(p.type, 64)}</span>`}
+        <span class="go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
         <h3>${p.name[S.lang]}</h3>
         <p>${p.short[S.lang]} · ${s.walk[0][i + 1]} ${t("walkLeg")}</p>`;
       box.append(c);
     });
+  }
+
+  // place summary sheet with listen + directions
+  function openPlace(i) {
+    const s = st(), p = s.places[i - 1], dlg = $("#placeSheet");
+    const media = $("#psMedia");
+    media.className = "ps-media" + (p.img ? "" : " g-" + p.type);
+    media.style.backgroundImage = p.img ? `url('${p.img}')` : "";
+    media.innerHTML = (p.img ? "" : `<span class="glyph">${icon(p.type, 72)}</span>`) + (p.imgCap ? `<span class="ps-cap">${p.imgCap}</span>` : "");
+    $("#psTag").textContent = t("typeName")[p.type];
+    $("#psName").textContent = p.name[S.lang];
+    $("#psShort").textContent = p.short[S.lang];
+    $("#psStory").textContent = p.story[S.lang];
+    $("#psWalk").textContent = `${s.walk[0][i]} ${t("min")}`;
+    $("#psAuto").textContent = `${autoMin(i)} ${t("min")}`;
+    $("#psHours").textContent = `${pad(p.open)}:00–${pad(p.close % 24)}:00`;
+    $("#psDir").href = directionsURL(p, "walking");
+    $("#psListen").onclick = (e) => { const b = e.currentTarget; if (S.speaking === b) stopSpeaking(); else speak(`${p.name[S.lang]}. ${p.story[S.lang]}`, b); };
+    $("#psListen").textContent = "🔊 " + t("listen");
+    dlg.showModal();
   }
 
   function currentMinute() {
@@ -576,12 +616,11 @@
     }));
     $$(".lang button").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
     $("#station").addEventListener("change", (e) => { S.station = e.target.value; renderExplore(); });
-    $("#cards").addEventListener("click", (e) => {
-      const b = e.target.closest("[data-card-listen]"); if (!b) return;
-      if (S.speaking === b) { stopSpeaking(); return; }
-      const p = st().places[+b.dataset.cardListen - 1];
-      speak(`${p.name[S.lang]}. ${p.story[S.lang]}`, b);
-    });
+    $("#cards").addEventListener("click", (e) => { const c = e.target.closest("[data-open]"); if (c) openPlace(+c.dataset.open); });
+    $("#cards").addEventListener("keydown", (e) => { const c = e.target.closest("[data-open]"); if (c && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openPlace(+c.dataset.open); } });
+    $("#psClose").addEventListener("click", () => { stopSpeaking(); $("#placeSheet").close(); });
+    $("#placeSheet").addEventListener("click", (e) => { if (e.target.id === "placeSheet") { stopSpeaking(); e.target.close(); } });
+    $("#timeline").addEventListener("click", (e) => { const th = e.target.closest(".stop-card"); if (th && th.dataset.open) openPlace(+th.dataset.open); });
     $("#plan").addEventListener("submit", (e) => { e.preventDefault(); plan(); });
 
     $("#startBtn").addEventListener("click", startTrip);

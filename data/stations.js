@@ -30,7 +30,7 @@ window.LL_STATIONS = {
     ],
     places: [
       {
-        id: "puran-singh", type: "food", lat: 30.34066, lon: 76.82755,
+        id: "puran-singh", type: "food", img: "img/dhaba.jpg", imgCap: "Representative photo of a Punjabi dhaba meal", lat: 30.34066, lon: 76.82755,
         open: 10, close: 23, visit: 40, score: 7,
         name: { en: "Puran Singh Da Dhaba", hi: "पूरन सिंह दा ढाबा" },
         short: { en: "Famous GT Road dhaba", hi: "जी.टी. रोड का मशहूर ढाबा" },
@@ -40,7 +40,7 @@ window.LL_STATIONS = {
         }
       },
       {
-        id: "st-pauls", type: "heritage", lat: 30.35362, lon: 76.82881,
+        id: "st-pauls", type: "heritage", img: "img/st-pauls.jpg", lat: 30.35362, lon: 76.82881,
         open: 8, close: 18, visit: 25, score: 10,
         name: { en: "St. Paul's Church Ruins", hi: "सेंट पॉल चर्च के खंडहर" },
         short: { en: "1857 church, bombed in 1965", hi: "1857 का चर्च, 1965 में बमबारी" },
@@ -50,7 +50,7 @@ window.LL_STATIONS = {
         }
       },
       {
-        id: "sadar-bazaar", type: "market", lat: 30.34006, lon: 76.84194,
+        id: "sadar-bazaar", type: "market", img: "img/sadar-bazaar.jpg", imgCap: "Sadar Bazaar, Ambala, in 1945", lat: 30.34006, lon: 76.84194,
         open: 10, close: 21, visit: 35, score: 8,
         name: { en: "Sadar Bazaar", hi: "सदर बाज़ार" },
         short: { en: "Old cantonment market", hi: "पुराना छावनी बाज़ार" },
@@ -137,7 +137,7 @@ window.LL_STATIONS = {
         }
       },
       {
-        id: "panorama", type: "heritage", lat: 29.96584, lon: 76.83342,
+        id: "panorama", type: "heritage", img: "img/panorama.jpg", lat: 29.96584, lon: 76.83342,
         open: 10, close: 18, visit: 35, score: 8,
         name: { en: "Kurukshetra Panorama & Science Centre", hi: "कुरुक्षेत्र पैनोरमा और विज्ञान केंद्र" },
         short: { en: "360° Mahabharata battle panorama", hi: "महाभारत युद्ध का 360° दृश्य" },
@@ -167,7 +167,7 @@ window.LL_STATIONS = {
         }
       },
       {
-        id: "chole-bhature", type: "food", lat: 29.96914, lon: 76.84235,
+        id: "chole-bhature", type: "food", img: "img/punjabi-food.jpg", imgCap: "Representative photo of Punjabi food", lat: 29.96914, lon: 76.84235,
         open: 8, close: 22, visit: 30, score: 7,
         name: { en: "Gulshan Bhai Ke Chole Bhature", hi: "गुलशन भाई के छोले भटूरे" },
         short: { en: "Local chole bhature favourite", hi: "लोकल छोले भटूरे की पसंदीदा दुकान" },
