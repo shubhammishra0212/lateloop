@@ -11,29 +11,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="styles.css?v=20">
+  <link rel="stylesheet" href="styles.css?v=21">
 </head>
 <body>
   <a class="skip" href="#plan">Skip to planner</a>
 
   <!-- ============ HERO ============ -->
   <header class="hero" id="hero">
-    <div class="hero-photo" aria-hidden="true"></div>
-    <div class="hero-scene" aria-hidden="true">
+        <div class="hero-scene" aria-hidden="true">
       <svg viewBox="0 0 1440 760" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#2140f0"/><stop offset=".55" stop-color="#4a6bff"/><stop offset="1" stop-color="#9fb4ff"/>
+            <stop offset="0" stop-color="#1b2aa8"/><stop offset=".45" stop-color="#3f5cff"/><stop offset=".78" stop-color="#9aa8ff"/><stop offset="1" stop-color="#ffc9a8"/>
           </linearGradient>
           <filter id="blur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="28"/></filter>
           <radialGradient id="sun"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
         </defs>
         <rect width="1440" height="760" fill="url(#sky)"/>
         <circle cx="1080" cy="300" r="190" fill="url(#sun)"/>
-        <circle cx="1080" cy="300" r="46" fill="#fff" opacity=".35"/>
+        <circle cx="1080" cy="330" r="58" fill="#ffe3b8" opacity=".9"/>
 
         <!-- far hills -->
-        <path d="M0 520 C180 470 320 500 470 480 S760 430 900 470 1200 450 1440 480 V760 H0Z" fill="#3655f5" opacity=".55"/>
+        <path d="M0 470 C160 420 300 455 470 430 S760 380 920 420 1230 395 1440 430 V760 H0Z" fill="#7d8fff" opacity=".55"/>
+        <path d="M0 520 C180 480 320 505 470 488 S760 448 900 478 1200 460 1440 490 V760 H0Z" fill="#4b63f2" opacity=".85"/>
+        <g class="birds" fill="none" stroke="#1b2aa8" stroke-width="2.4" stroke-linecap="round" opacity=".55"><path d="M820 230 q8 -8 16 0 q8 -8 16 0"/><path d="M870 205 q6 -6 12 0 q6 -6 12 0"/><path d="M780 260 q5 -5 10 0 q5 -5 10 0"/></g>
 
         <!-- fog back -->
         <g class="fog f1" filter="url(#blur)"><ellipse cx="300" cy="500" rx="420" ry="46" fill="#fff" opacity=".35"/><ellipse cx="1150" cy="470" rx="380" ry="40" fill="#fff" opacity=".3"/></g>
@@ -304,7 +305,7 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="data/stations.js?v=20"></script>
-  <script src="app.js?v=20"></script>
+  <script src="data/stations.js?v=21"></script>
+  <script src="app.js?v=21"></script>
 </body>
 </html>
