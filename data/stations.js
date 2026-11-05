@@ -5,7 +5,7 @@
 window.LL_STATIONS = {
   "ambala-cantt": {
     name: { en: "Ambala Cantt Junction", hi: "अम्बाला कैंट जंक्शन" },
-    code: "UMB",
+    code: "UMB", img: "img/ambala-rs.jpg",
     lat: 30.33824, lon: 76.8287,
     // minutes, rows/cols follow [station, ...places]
     walk: [
@@ -104,7 +104,7 @@ window.LL_STATIONS = {
 
   "kurukshetra": {
     name: { en: "Kurukshetra Junction", hi: "कुरुक्षेत्र जंक्शन" },
-    code: "KKDE",
+    code: "KKDE", img: "img/kkr-station.jpg",
     lat: 29.96986, lon: 76.85171,
     walk: [
       [0, 46, 29, 29, 34, 25, 12, 38], [46, 0, 17, 16, 26, 23, 31, 5], [29, 17, 0, 4, 23, 13, 16, 14],
@@ -117,7 +117,7 @@ window.LL_STATIONS = {
     ],
     places: [
       {
-        id: "brahma-sarovar", type: "faith", lat: 29.96128, lon: 76.8274,
+        id: "brahma-sarovar", type: "faith", img: "img/brahma-sarovar.jpg", lat: 29.96128, lon: 76.8274,
         open: 5, close: 22, visit: 35, score: 10,
         name: { en: "Brahma Sarovar", hi: "ब्रह्म सरोवर" },
         short: { en: "Giant sacred tank, Krishna–Arjun chariot", hi: "विशाल पवित्र सरोवर, कृष्ण-अर्जुन रथ" },
@@ -147,7 +147,7 @@ window.LL_STATIONS = {
         }
       },
       {
-        id: "sheikh-chilli", type: "heritage", lat: 29.97665, lon: 76.8281,
+        id: "sheikh-chilli", type: "heritage", img: "img/sheikh-chilli.jpg", lat: 29.97665, lon: 76.8281,
         open: 9, close: 17, visit: 30, score: 9,
         name: { en: "Sheikh Chilli's Tomb & Harsh ka Tila", hi: "शेख चिल्ली का मकबरा और हर्ष का टीला" },
         short: { en: "Mughal tomb beside an ancient mound", hi: "प्राचीन टीले के पास मुगल मकबरा" },

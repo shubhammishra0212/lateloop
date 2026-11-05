@@ -5,14 +5,24 @@
   // ---------- Text (English / Hindi) ----------
   const T = {
     en: {
-      heroTitle: "Train late? See the city.<br>Be back on time.",
+      heroTitle: "Train late?<br><em>See the city.</em><br>Be back on time.",
+      navPlan: "Plan", navExplore: "Explore", navAsk: "Ask AI", navHow: "How it works",
+      eyebrow: "For passengers stuck by fog delays", exploreBtn: "Explore places", plannerTitle: "Plan your delay trip",
+      fact1: "Trains delayed every winter day in the Ambala division", fact2: "Always kept spare before your train", fact3: "Local places across 2 stations, with stories",
+      yourLoop: "Your <em>delay trip</em>", exploreEyebrow: "Around the station", exploreTpl: (n) => `Explore around <em>${n}</em>`,
+      hiThere: "Hi there!", whatCan: "What can I do for you today?",
+      howEyebrow: "How it works", howTitle: "3 easy steps to a <em>safe trip</em>",
+      s1t: "Tell us the delay", s1d: "Pick your station and how late the train is — or just say it to the assistant.",
+      s2t: "Get a safe loop", s2d: "We assume the train may make up 30% of its delay and keep 30 minutes spare.",
+      s3t: "Explore, stay updated", s3d: "Listen to local stories. If the delay changes, the trip updates — or tells you to head back.",
+      fromStation: "from the station", typeName: { food: "Food", heritage: "History", market: "Market", faith: "Faith", nature: "Park" },
       heroSub: "Tell us how late your train is. We plan a short local trip around the station — and make sure you are back before your train.",
       where: "Which station are you at?", howLate: "How late is your train?",
       delayHint: "Check the delay on the station board, NTES or call 139.",
       timeNow: "Time now", move: "How will you move?", walk: "Walk", auto: "Auto",
       likes: "What do you enjoy?", heritage: "History", food: "Food", market: "Markets", faith: "Temples", nature: "Parks",
       planBtn: "Plan my trip",
-      agentTitle: "Ask LateLoop", agentSub: "Type or speak in plain words, like “my train is 2 hours late, I want food”. The assistant plans it and answers your questions.",
+      agentTitle: "Ask LateLoop — your AI travel assistant", agentSub: "Type or speak in plain words, like “my train is 2 hours late, I want food”. The assistant plans it and answers your questions.",
       askPh: "e.g. Train is 2 hours late, I love history", ask: "Ask",
       qSummary: "Summarise my trip", qSafe: "Is it safe to go?", qEat: "Where should I eat?",
       backBy: "Be back at the station by", outFor: "Time outside", timeLeft: "Time left",
@@ -21,7 +31,7 @@
       emptyTitle: "Your trip will appear here", emptySub: "Set how late your train is and press “Plan my trip”.",
       how1: "We assume the train may make up 30% of its delay.", how2: "We keep 30 minutes spare before your train.", how3: "Only places open at that time are suggested.",
       newDelay: "New train delay", apply: "Update my trip", cancel: "Cancel",
-      foot: "Built for travellers stuck by fog delays. Map data © OpenStreetMap contributors. Routing by OSRM.",
+      foot: "Built for travellers stuck by fog delays. Map data © OpenStreetMap contributors. Routing by OSRM. Photos: Wikimedia Commons.",
       h: "h", min: "min", leave: "Leave", arrive: "Arrive", stay: "Stay", leaveBy: "leave by",
       walkLeg: "min walk", autoLeg: "min by auto", startAt: "Start from the station", endAt: "Back at the station",
       listen: "Listen", stopListen: "Stop", readMore: "About this place", imHere: "I'm here", here: "You are here",
@@ -35,14 +45,24 @@
       planned: "Done — I planned your trip. ",
     },
     hi: {
-      heroTitle: "ट्रेन लेट है? शहर घूमिए।<br>समय पर लौटिए।",
+      heroTitle: "ट्रेन लेट है?<br><em>शहर घूमिए।</em><br>समय पर लौटिए।",
+      navPlan: "प्लान", navExplore: "घूमें", navAsk: "AI से पूछें", navHow: "कैसे काम करता है",
+      eyebrow: "कोहरे से लेट हुए यात्रियों के लिए", exploreBtn: "जगहें देखें", plannerTitle: "देरी में यात्रा बनाइए",
+      fact1: "अम्बाला मंडल में सर्दियों में रोज़ लेट होने वाली ट्रेनें", fact2: "ट्रेन से पहले हमेशा बचाकर रखे जाते हैं", fact3: "2 स्टेशनों पर कहानियों के साथ स्थानीय जगहें",
+      yourLoop: "आपकी <em>देरी यात्रा</em>", exploreEyebrow: "स्टेशन के आसपास", exploreTpl: (n) => `<em>${n}</em> के आसपास घूमिए`,
+      hiThere: "नमस्ते!", whatCan: "आज मैं आपकी क्या मदद करूँ?",
+      howEyebrow: "कैसे काम करता है", howTitle: "<em>सुरक्षित यात्रा</em> के 3 आसान कदम",
+      s1t: "देरी बताइए", s1d: "स्टेशन और ट्रेन की देरी चुनिए — या सहायक को बोलकर बताइए।",
+      s2t: "सुरक्षित प्लान पाइए", s2d: "हम मानते हैं कि ट्रेन 30% देरी पूरी कर सकती है और 30 मिनट बचाकर रखते हैं।",
+      s3t: "घूमिए, अपडेट रहिए", s3d: "स्थानीय कहानियाँ सुनिए। देरी बदले तो यात्रा बदल जाती है — या वापस लौटने को कहती है।",
+      fromStation: "स्टेशन से", typeName: { food: "खाना", heritage: "इतिहास", market: "बाज़ार", faith: "आस्था", nature: "पार्क" },
       heroSub: "बताइए आपकी ट्रेन कितनी लेट है। हम स्टेशन के आसपास एक छोटी यात्रा बनाते हैं — और पक्का करते हैं कि आप ट्रेन से पहले लौट आएँ।",
       where: "आप किस स्टेशन पर हैं?", howLate: "ट्रेन कितनी लेट है?",
       delayHint: "देरी स्टेशन बोर्ड, NTES या 139 पर देखें।",
       timeNow: "अभी का समय", move: "कैसे जाएँगे?", walk: "पैदल", auto: "ऑटो",
       likes: "आपको क्या पसंद है?", heritage: "इतिहास", food: "खाना", market: "बाज़ार", faith: "मंदिर", nature: "पार्क",
       planBtn: "मेरी यात्रा बनाइए",
-      agentTitle: "LateLoop से पूछिए", agentSub: "आसान शब्दों में लिखिए या बोलिए, जैसे “ट्रेन 2 घंटे लेट है, खाना खाना है”। सहायक यात्रा बनाएगा और सवालों के जवाब देगा।",
+      agentTitle: "LateLoop से पूछिए — आपका AI यात्रा सहायक", agentSub: "आसान शब्दों में लिखिए या बोलिए, जैसे “ट्रेन 2 घंटे लेट है, खाना खाना है”। सहायक यात्रा बनाएगा और सवालों के जवाब देगा।",
       askPh: "जैसे: ट्रेन 2 घंटे लेट है, इतिहास पसंद है", ask: "पूछें",
       qSummary: "यात्रा का सार बताइए", qSafe: "क्या जाना सुरक्षित है?", qEat: "कहाँ खाऊँ?",
       backBy: "स्टेशन पर लौटिए", outFor: "बाहर का समय", timeLeft: "बचा समय",
@@ -51,7 +71,7 @@
       emptyTitle: "आपकी यात्रा यहाँ दिखेगी", emptySub: "ट्रेन की देरी चुनें और “मेरी यात्रा बनाइए” दबाएँ।",
       how1: "हम मानते हैं कि ट्रेन 30% देरी पूरी कर सकती है।", how2: "ट्रेन से 30 मिनट पहले लौटने का समय रखते हैं।", how3: "सिर्फ़ उस समय खुली जगहें सुझाते हैं।",
       newDelay: "ट्रेन की नई देरी", apply: "यात्रा अपडेट करें", cancel: "रद्द करें",
-      foot: "कोहरे से लेट हुए यात्रियों के लिए बनाया गया। नक्शा © OpenStreetMap योगदानकर्ता। रास्ते OSRM से।",
+      foot: "कोहरे से लेट हुए यात्रियों के लिए बनाया गया। नक्शा © OpenStreetMap योगदानकर्ता। रास्ते OSRM से। फ़ोटो: Wikimedia Commons।",
       h: "घं", min: "मि", leave: "निकलें", arrive: "पहुँचें", stay: "रुकें", leaveBy: "निकलें",
       walkLeg: "मिनट पैदल", autoLeg: "मिनट ऑटो से", startAt: "स्टेशन से शुरू", endAt: "स्टेशन पर वापस",
       listen: "सुनें", stopListen: "रोकें", readMore: "इस जगह के बारे में", imHere: "मैं यहाँ हूँ", here: "आप यहाँ हैं",
@@ -170,7 +190,7 @@
       L.marker([x.place.lat, x.place.lon], { icon: pinIcon(k + 1, cls), title: x.place.name[S.lang] })
         .addTo(S.layers).bindPopup(`<b>${x.place.name[S.lang]}</b><br>${clock(x.arrive)} – ${clock(x.leave)}`);
     });
-    const fallback = L.polyline(pts, { color: "#16181d", weight: 3, dashArray: "6 8", opacity: 0.7 }).addTo(S.layers);
+    const fallback = L.polyline(pts, { color: "#2747ff", weight: 3, dashArray: "6 8", opacity: 0.8 }).addTo(S.layers);
     S.map.fitBounds(L.latLngBounds(pts).pad(0.25));
     setTimeout(() => S.map.invalidateSize(), 50);
     if (plan.stops.length === 0) return;
@@ -184,7 +204,7 @@
       const j = await r.json();
       if (j.code === "Ok" && S.plan === plan) {
         S.layers.removeLayer(fallback);
-        L.geoJSON(j.routes[0].geometry, { style: { color: "#f59e0b", weight: 6, opacity: 0.95 } }).addTo(S.layers);
+        L.geoJSON(j.routes[0].geometry, { style: { color: "#2747ff", weight: 6, opacity: 0.9 } }).addTo(S.layers);
       }
     } catch (_) { /* keep dashed line */ }
   }
@@ -192,7 +212,6 @@
   // ---------- Render ----------
   function render() {
     const p = S.plan;
-    $("#empty").hidden = !!p;
     $("#result").hidden = !p;
     if (!p) return;
     const s = st();
@@ -221,10 +240,15 @@
       }
       li.innerHTML = `
         <span class="n" aria-hidden="true">${k + 1}</span>
-        <h3>${x.place.name[S.lang]}</h3>
-        <p class="sub">${x.place.short[S.lang]}</p>
-        <p class="leg">${legTxt(x.leg)} · ${t("arrive")} ${clock(x.arrive)} · ${t("stay")} ${x.place.visit} ${t("min")} · ${t("leaveBy")} ${clock(x.leave)}</p>
-        <details><summary class="sub" style="cursor:pointer;margin-top:8px;font-weight:600">${t("readMore")}</summary><p class="story">${x.place.story[S.lang]}</p></details>
+        <div class="stop-card">
+          ${thumbHTML(x.place)}
+          <div>
+            <h3>${x.place.name[S.lang]}</h3>
+            <p class="sub">${x.place.short[S.lang]}</p>
+            <p class="leg">${legTxt(x.leg)} · ${t("arrive")} ${clock(x.arrive)} · ${t("stay")} ${x.place.visit} ${t("min")} · ${t("leaveBy")} ${clock(x.leave)}</p>
+          </div>
+        </div>
+        <details><summary>${t("readMore")}</summary><p class="story">${x.place.story[S.lang]}</p></details>
         <div class="row">
           <button type="button" data-listen="${x.idx}">🔊 ${t("listen")}</button>
           ${S.trip ? `<button type="button" data-here="${x.idx}">${S.trip.at === x.idx ? "✓ " + t("here") : "📍 " + t("imHere")}</button>` : ""}
@@ -238,6 +262,30 @@
     $("#startBtn").textContent = S.trip ? "✓ " + t("started") : t("start");
     $("#startBtn").disabled = !!S.trip || !p.stops.length;
     drawMap(p);
+  }
+
+  const GLYPH = { food: "🍛", heritage: "🏛️", market: "🛍️", faith: "🛕", nature: "🌳" };
+  const thumbHTML = (p) => p.img
+    ? `<div class="thumb" style="background-image:url('${p.img}')" aria-hidden="true"></div>`
+    : `<div class="thumb g-${p.type}" aria-hidden="true">${GLYPH[p.type] || "📍"}</div>`;
+
+  function renderExplore() {
+    const s = st();
+    $("#exploreTitle").innerHTML = t("exploreTpl")(s.name[S.lang].replace(/ Junction| जंक्शन/, ""));
+    $("#heroBg").style.backgroundImage = `url('${s.img}')`;
+    const box = $("#cards"); box.innerHTML = "";
+    s.places.forEach((p, i) => {
+      const c = document.createElement("article");
+      c.className = "pcard" + (p.img ? "" : " g-" + p.type);
+      if (p.img) c.style.backgroundImage = `url('${p.img}')`;
+      c.innerHTML = `
+        <span class="tag">${t("typeName")[p.type]}</span>
+        ${p.img ? "" : `<span class="glyph" aria-hidden="true">${GLYPH[p.type]}</span>`}
+        <button type="button" class="go" data-card-listen="${i + 1}" aria-label="${t("listen")}: ${p.name[S.lang]}">🔊</button>
+        <h3>${p.name[S.lang]}</h3>
+        <p>${p.short[S.lang]} · ${s.walk[0][i + 1]} ${t("walkLeg")}</p>`;
+      box.append(c);
+    });
   }
 
   function currentMinute() {
@@ -260,7 +308,7 @@
     S.trip = null; clearInterval(S.timer);
     S.plan = makePlan();
     render();
-    if (matchMedia("(max-width:920px)").matches) $("#result").scrollIntoView({ behavior: "smooth", block: "start" });
+    $("#result").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function startTrip() {
@@ -499,7 +547,7 @@
     $$(".lang button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === l)));
     $$("[data-i18n]").forEach((el) => { const v = T[l][el.dataset.i18n]; if (typeof v === "string") el.innerHTML = v; });
     $$("[data-i18n-ph]").forEach((el) => { el.placeholder = T[l][el.dataset.i18nPh]; });
-    fillStations(); syncDelay();
+    fillStations(); syncDelay(); renderExplore();
     if (S.plan) render();
     try { localStorage.setItem("ll-lang", l); } catch (_) {}
   }
@@ -528,7 +576,13 @@
       syncLikes();
     }));
     $$(".lang button").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
-    $("#station").addEventListener("change", (e) => { S.station = e.target.value; });
+    $("#station").addEventListener("change", (e) => { S.station = e.target.value; renderExplore(); });
+    $("#cards").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-card-listen]"); if (!b) return;
+      if (S.speaking === b) { stopSpeaking(); return; }
+      const p = st().places[+b.dataset.cardListen - 1];
+      speak(`${p.name[S.lang]}. ${p.story[S.lang]}`, b);
+    });
     $("#plan").addEventListener("submit", (e) => { e.preventDefault(); plan(); });
 
     $("#startBtn").addEventListener("click", startTrip);
