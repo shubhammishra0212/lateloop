@@ -26,6 +26,7 @@ function init() {
 
   const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 200);
   const camBase = new THREE.Vector3(0, 17, 41);
+  camera.position.copy(camBase); camera.lookAt(0, 0.5, 0);
 
   // lights
   scene.add(new THREE.HemisphereLight(0xdfe6ff, 0x1a2488, 1.15));
