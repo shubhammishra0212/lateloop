@@ -49,7 +49,8 @@ The planner searches every ordering of up to 5 stops. A stop is allowed only if 
 - **Voice:** Web Speech API for speech-to-text and text-to-speech (`en-IN`, `hi-IN`).
 - **AI:** a grounded intent and Q&A agent that runs on the device, plus an optional online LLM (Pollinations).
 - **Hosting:** Vercel (production) and GitHub Pages (mirror).
-- **Photos:** Wikimedia Commons (Brahma Sarovar, Sheikh Chilli's Tomb).
+- **Photos:** Wikimedia Commons: St. Paul's Church ruins, Sadar Bazaar (1945), Brahma Sarovar, Sheikh Chilli's Tomb, Kurukshetra Panorama, plus representative dhaba food photos (labelled in the app).
+- **Place sheet:** tap any place to open a summary with walk and auto times, approximate hours, the story with read-aloud, and Google Maps directions from the station.
 
 ## Run locally
 
