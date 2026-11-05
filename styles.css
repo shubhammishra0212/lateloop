@@ -132,3 +132,12 @@ dialog::backdrop{background:rgba(10,10,12,.5)}
 
 .foot{max-width:1180px;margin:0 auto;padding:10px 20px 40px;color:var(--muted);font-size:14px}
 .leaflet-container{font-family:var(--font)}
+.leaflet-tile-pane{filter:grayscale(1) contrast(.92) brightness(1.04)}
+@media (prefers-color-scheme:dark){.leaflet-tile-pane{filter:grayscale(1) invert(1) contrast(.85) brightness(.9)}}
+@media (max-width:600px){
+  .deadline{flex-wrap:wrap;align-items:flex-start}
+  .deadline .right{text-align:left}
+  .big.muted{font-size:24px}
+  .hero h1{font-size:32px}
+  .card{padding:18px}
+}

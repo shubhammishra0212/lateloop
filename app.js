@@ -152,9 +152,8 @@
     if (S.map) return;
     const s = st();
     S.map = L.map("map", { zoomControl: true, attributionControl: true, scrollWheelZoom: false }).setView([s.lat, s.lon], 14);
-    const dark = matchMedia("(prefers-color-scheme: dark)").matches;
-    L.tileLayer(`https://{s}.basemaps.cartocdn.com/${dark ? "dark_all" : "light_all"}/{z}/{x}/{y}{r}.png`, {
-      maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; CARTO'
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(S.map);
     S.layers = L.layerGroup().addTo(S.map);
   }

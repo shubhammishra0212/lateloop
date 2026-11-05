@@ -43,7 +43,7 @@ The planner searches every ordering of up to 5 stops. A stop is allowed only if 
 ## Tech
 
 - **Frontend:** plain HTML, CSS and JavaScript. No build step, no server, no API keys.
-- **Map:** Leaflet with OpenStreetMap and CARTO tiles.
+- **Map:** Leaflet with OpenStreetMap tiles (grey-scaled).
 - **Routing:** OSRM (`routing.openstreetmap.de`). Travel-time matrices were fetched ahead of time, so planning works offline, and the live route line falls back to a dashed line if routing is slow.
 - **Places:** OpenStreetMap / Nominatim coordinates, saved in `data/stations.js`.
 - **Voice:** Web Speech API for speech-to-text and text-to-speech (`en-IN`, `hi-IN`).
