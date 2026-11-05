@@ -22,7 +22,7 @@ function init() {
   host.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x8ea4ff, 22, 52);
+  scene.fog = new THREE.Fog(0x8ea4ff, 40, 78);
 
   const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 200);
   const camBase = new THREE.Vector3(0, 17, 41);
@@ -158,7 +158,7 @@ function init() {
     camera.aspect = w / h;
     // keep the diorama in the upper/right area on wide screens, centred on phones
     const wide = w > 1040;
-    world.position.set(wide ? 4.5 : 0, wide ? 1.2 : 4.5, 0);
+    world.position.set(wide ? 0.5 : 0, wide ? 3.2 : 5, 0);
     world.scale.setScalar(wide ? 0.95 : 0.8);
     camera.updateProjectionMatrix();
   }
